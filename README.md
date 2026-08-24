@@ -34,6 +34,27 @@ npm run typecheck
 - **Mağaza kapısı mağaza başınadır** (`MAGAZALAR[].yayinda`). afiet.co'daki
   tek bayraktan farkı budur: iOS yayında, Play henüz değil.
 
+## Ölçüm
+
+Sayfa kendi ölçümünü tutar ve **çerezsizdir**: ziyaretçi/oturum kimliği yok,
+çerez yok, localStorage yok, IP saklanmıyor. Bu yüzden çerez onay bildirimi de
+yok. Saklanan satır bir kişiye bağlanamaz.
+
+- İki olay var: sayfa açılışında `goruntuleme`, dışarı giden bağlantıda `tik`.
+- Dışarı çıkan her bağlantı `data-tik="<anahtar>"` taşır (`appstore`,
+  `sosyal:instagram`, `blog:<slug>`). Öznitelik yoksa tık sayılmaz.
+- Veri aynı Neon veritabanında ayrı bir `buyur_events` tablosunda yaşar.
+  afiet.co'nun `analytics_events` tablosuna yazılmaz: orası `visitor_id`
+  zorunlu tutuyor ve her istekte kimlik uydurmak panelin tekil ziyaretçi
+  sayısını şişirirdi.
+- Beacon yalnız `buyur.afiet.co` host'unda çalışır; yerel ve önizleme
+  dağıtımları tabloyu kirletmez. DNT sinyaline saygı gösterir.
+- Gereken env değişkeni: `NUXT_DATABASE_URL` (afiet-web ile aynı ad, aynı
+  değer). Boşken ölçüm sessizce kapalıdır, sayfa çalışmaya devam eder.
+
+Sorabildiği soru: kaç görüntüleme, hangi bağlantıya kaç tık, dolayısıyla
+bağlantı başına tıklama oranı. Soramadığı: kaç tekil kişi.
+
 ## Bilinçli kararlar
 
 | Karar | Neden |

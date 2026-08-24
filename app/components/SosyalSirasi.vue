@@ -18,6 +18,7 @@ const sosyal = SOSYAL
     <li v-for="s in sosyal" :key="s.href">
       <a
         :href="s.href"
+        :data-tik="`sosyal:${s.ikon}`"
         :aria-label="s.ad"
         :title="s.ad"
         target="_blank"

@@ -29,6 +29,24 @@ export default defineNuxtConfig({
     '/': { isr: 60 },
   },
 
+  runtimeConfig: {
+    /**
+     * Neon bağlantı dizesi (sunucu tarafı, gizli). Env: NUXT_DATABASE_URL -
+     * afiet-web'de de aynı ad, aynı değer, aynı veritabanı.
+     * Boşken `/api/tik` sessizce 204 döner: ölçüm yoksa sayfa yine çalışır.
+     */
+    databaseUrl: '',
+
+    public: {
+      /**
+       * Ölçümün açık olduğu TEK host. Yerelde ve önizleme dağıtımlarında
+       * eşleşmez, beacon hiç çalışmaz; `buyur_events` yalnız gerçek ziyaretle
+       * dolar (afiet-web'deki `analyticsDomains` kuralının aynısı).
+       */
+      olcumHost: 'buyur.afiet.co',
+    },
+  },
+
   app: {
     head: {
       htmlAttrs: { lang: 'tr' },

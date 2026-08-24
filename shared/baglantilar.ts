@@ -63,13 +63,19 @@ export const SOSYAL: { ad: string; href: string; ikon: SosyalIkon }[] = [
   { ad: 'LinkedIn', href: 'https://www.linkedin.com/company/afiet-app', ikon: 'linkedin' },
 ]
 
-/** Alt sıradaki ince bağlantılar: sayfanın gövdesiyle yarışmazlar. */
+/**
+ * Alt sıradaki ince bağlantılar: sayfanın gövdesiyle yarışmazlar.
+ *
+ * `anahtar` ölçüm içindir ve etiketten TÜRETİLMEZ: etiketler Türkçe ve
+ * boşluklu ("basın kiti"), ölçüm anahtarı ise sabit ve ASCII olmak zorunda,
+ * yoksa etiketi güzelleştiren bir düzenleme geçmişteki sayıları koparır.
+ */
 export const INCE_BAGLANTILAR = [
-  { ad: 'hesaplayıcılar', href: `${SITE}/hesapla` },
-  { ad: 'destek', href: `${SITE}/destek` },
-  { ad: 'basın kiti', href: `${SITE}/basin` },
-  { ad: 'iletişim', href: `${SITE}/iletisim` },
-  { ad: 'gizlilik', href: `${SITE}/gizlilik` },
+  { ad: 'hesaplayıcılar', anahtar: 'ince:hesapla', href: `${SITE}/hesapla` },
+  { ad: 'destek', anahtar: 'ince:destek', href: `${SITE}/destek` },
+  { ad: 'basın kiti', anahtar: 'ince:basin', href: `${SITE}/basin` },
+  { ad: 'iletişim', anahtar: 'ince:iletisim', href: `${SITE}/iletisim` },
+  { ad: 'gizlilik', anahtar: 'ince:gizlilik', href: `${SITE}/gizlilik` },
 ]
 
 /** Akan ölçü şeridi - afiet.co hero'sundaki çiplerin aynısı, yeni metin yok. */

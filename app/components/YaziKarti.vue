@@ -18,6 +18,7 @@ defineProps<{ slug: string; title: string; tags: string[]; publishedAt: string; 
 <template>
   <a
     :href="`${SITE}/blog/${slug}`"
+    :data-tik="`blog:${slug}`"
     class="group flex items-center gap-3.5 rounded-2xl border border-line bg-surface px-4 py-3.5 transition duration-300 hover:-translate-y-0.5 hover:border-brand/35 hover:shadow-lift"
   >
     <span class="min-w-0 flex-1">
