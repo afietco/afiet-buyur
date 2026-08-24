@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ANDROID_YOLU, MAGAZALAR } from '#shared/baglantilar'
+import { MAGAZALAR } from '#shared/baglantilar'
 
 /**
  * Sayfanın birincil eylemi: mağazalar.
  *
  * Yayında olan mağaza dolu yeşil karttır (tek birincil eylem), yayında
  * olmayan pasif gri karttır ve TIKLANMAZ - 404'e giden bir buton funnel'ın
- * en pahalı hatası olurdu. Pasif kartın altında yine de bir yol vardır
- * (`ANDROID_YOLU`): Android'den gelen ziyaretçiyi elimizden bırakmıyoruz.
+ * en pahalı hatası olurdu. Pasif kartın altında ikinci bir yol YOKTUR: erken
+ * erişim programı kapandı (25 Ağu 2026), kapanmış bir programa davet etmek
+ * hiç davet etmemekten kötü olurdu.
  *
  * Bayrak mağaza başınadır, `#shared/baglantilar > MAGAZALAR`. Play yayına
  * girdiği gün orada tek satır değişir, buraya dokunulmaz.
  */
 const magazalar = MAGAZALAR
-const androidYayinda = MAGAZALAR.find((m) => m.key === 'play')?.yayinda ?? false
 </script>
 
 <template>
@@ -86,15 +86,5 @@ const androidYayinda = MAGAZALAR.find((m) => m.key === 'play')?.yayinda ?? false
         <path d="M5 12h13m-5-6 6 6-6 6" />
       </svg>
     </component>
-
-    <a
-      v-if="!androidYayinda"
-      :href="ANDROID_YOLU.href"
-      data-tik="android-beta"
-      class="group flex items-center justify-center gap-1.5 rounded-2xl border border-brand/25 bg-brand-mint/25 px-5 py-3 text-sm font-extrabold text-brand-deep transition duration-300 hover:-translate-y-0.5 hover:border-brand/45 hover:shadow-lift"
-    >
-      {{ ANDROID_YOLU.metin }}
-      <span class="transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
-    </a>
   </div>
 </template>
