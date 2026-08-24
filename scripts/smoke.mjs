@@ -56,6 +56,22 @@ try {
   // Play henüz yayında değil; yayına girene kadar pasif kart durmalı.
   kontrol(html.includes('yakında'), 'yayında olmayan mağaza pasif duruyor')
 
+  // Ölçüm ucu: veritabanı olmadan da (CI'da yok) sessizce 204 dönmeli.
+  // Sözleşme "ölçüm sayfayı kırmaz"dır ve en ucuz kanıtı budur.
+  const t1 = await fetch(`${BASE}/api/tik`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ e: 'tik', h: 'appstore' }),
+  })
+  kontrol(t1.status === 204, 'ölçüm ucu geçerli gövdede 204')
+
+  const t2 = await fetch(`${BASE}/api/tik`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: 'bu json değil',
+  })
+  kontrol(t2.status === 204, 'ölçüm ucu bozuk gövdede de 204')
+
   const rb = await fetch(`${BASE}/robots.txt`)
   kontrol(rb.status === 200 && (await rb.text()).includes('Allow: /'), 'robots.txt taramaya izin veriyor')
 } catch (err) {

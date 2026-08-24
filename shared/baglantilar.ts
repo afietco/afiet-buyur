@@ -46,14 +46,13 @@ export const MAGAZALAR = [
 ]
 
 /**
- * Android'de uygulama daha yayında değil. Boş bir "yakında" rozeti Android
- * ziyaretçisini elimizden çıkarır; erken erişim başvurusu tek dönüşüm
- * yolumuz (bekleme listesi 27 Tem 2026'da kaldırıldı, geriye /beta kaldı).
+ * ANDROID İÇİN İKİNCİ BİR YOL YOK (kullanıcı kararı, 25 Ağu 2026): erken
+ * erişim programı kapandı, /beta'ya bağlantı verilmez. Android ziyaretçisi
+ * pasif "yakında" kartını görür ve sayfada başka bir eylem beklemez.
+ * Buraya bir gün yeniden bir yol koyulacaksa (haber ver, bülten) önce o
+ * yolun karşılığının gerçekten var olduğu doğrulanır: kapanmış bir programa
+ * çağırmak, hiç çağırmamaktan kötüdür.
  */
-export const ANDROID_YOLU = {
-  href: `${SITE}/beta`,
-  metin: 'Android için erken erişime katıl',
-}
 
 export const SOSYAL: { ad: string; href: string; ikon: SosyalIkon }[] = [
   { ad: 'Instagram', href: 'https://www.instagram.com/afiet.co/', ikon: 'instagram' },
@@ -63,13 +62,19 @@ export const SOSYAL: { ad: string; href: string; ikon: SosyalIkon }[] = [
   { ad: 'LinkedIn', href: 'https://www.linkedin.com/company/afiet-app', ikon: 'linkedin' },
 ]
 
-/** Alt sıradaki ince bağlantılar: sayfanın gövdesiyle yarışmazlar. */
+/**
+ * Alt sıradaki ince bağlantılar: sayfanın gövdesiyle yarışmazlar.
+ *
+ * `anahtar` ölçüm içindir ve etiketten TÜRETİLMEZ: etiketler Türkçe ve
+ * boşluklu ("basın kiti"), ölçüm anahtarı ise sabit ve ASCII olmak zorunda,
+ * yoksa etiketi güzelleştiren bir düzenleme geçmişteki sayıları koparır.
+ */
 export const INCE_BAGLANTILAR = [
-  { ad: 'hesaplayıcılar', href: `${SITE}/hesapla` },
-  { ad: 'destek', href: `${SITE}/destek` },
-  { ad: 'basın kiti', href: `${SITE}/basin` },
-  { ad: 'iletişim', href: `${SITE}/iletisim` },
-  { ad: 'gizlilik', href: `${SITE}/gizlilik` },
+  { ad: 'hesaplayıcılar', anahtar: 'ince:hesapla', href: `${SITE}/hesapla` },
+  { ad: 'destek', anahtar: 'ince:destek', href: `${SITE}/destek` },
+  { ad: 'basın kiti', anahtar: 'ince:basin', href: `${SITE}/basin` },
+  { ad: 'iletişim', anahtar: 'ince:iletisim', href: `${SITE}/iletisim` },
+  { ad: 'gizlilik', anahtar: 'ince:gizlilik', href: `${SITE}/gizlilik` },
 ]
 
 /** Akan ölçü şeridi - afiet.co hero'sundaki çiplerin aynısı, yeni metin yok. */
