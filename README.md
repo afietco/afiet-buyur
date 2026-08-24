@@ -62,4 +62,5 @@ bağlantı başına tıklama oranı. Soramadığı: kaç tekil kişi.
 | `noindex, follow` | İçeriğin tamamı afiet.co'da var; indekslenirse SEO emeği verilmiş sayfalarla aynı sorgularda yarışır. `follow` açık kalır, bağlantılar taranır. |
 | robots.txt taramayı engellemez | Engellenirse motor sayfayı indirip `noindex`i göremez, adres yine indekste görünebilir. |
 | afiet.co bağlantılarında UTM yok | afiet.co analitiği `utm` gören her ziyareti `campaign` kanalına yazıyor; organik funnel trafiği reklam raporlarına karışırdı. İşaret zaten var: referrer `buyur.afiet.co`, kanal `referral`. |
+| Android'e ikinci bir yol yok | Erken erişim programı 25 Ağu 2026'da kapandı. Pasif "yakında" kartının altında `/beta` bağlantısı vardı, kaldırıldı: kapanmış bir programa davet etmek hiç davet etmemekten kötü. |
 | Blog kartlarında kapak görseli yok | Kapaklar tek boy 1200x630 üretiliyor; 64 pikselik kutuya üç tam boy PNG indirtmek mobil funnel sayfasında ilk ekranı bekletir. |

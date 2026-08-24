@@ -46,14 +46,13 @@ export const MAGAZALAR = [
 ]
 
 /**
- * Android'de uygulama daha yayında değil. Boş bir "yakında" rozeti Android
- * ziyaretçisini elimizden çıkarır; erken erişim başvurusu tek dönüşüm
- * yolumuz (bekleme listesi 27 Tem 2026'da kaldırıldı, geriye /beta kaldı).
+ * ANDROID İÇİN İKİNCİ BİR YOL YOK (kullanıcı kararı, 25 Ağu 2026): erken
+ * erişim programı kapandı, /beta'ya bağlantı verilmez. Android ziyaretçisi
+ * pasif "yakında" kartını görür ve sayfada başka bir eylem beklemez.
+ * Buraya bir gün yeniden bir yol koyulacaksa (haber ver, bülten) önce o
+ * yolun karşılığının gerçekten var olduğu doğrulanır: kapanmış bir programa
+ * çağırmak, hiç çağırmamaktan kötüdür.
  */
-export const ANDROID_YOLU = {
-  href: `${SITE}/beta`,
-  metin: 'Android için erken erişime katıl',
-}
 
 export const SOSYAL: { ad: string; href: string; ikon: SosyalIkon }[] = [
   { ad: 'Instagram', href: 'https://www.instagram.com/afiet.co/', ikon: 'instagram' },
