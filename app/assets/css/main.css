@@ -92,34 +92,53 @@
   h1, h2, h3 {
     text-wrap: balance;
   }
+
+  ::selection {
+    @apply bg-brand-mint text-brand-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  /* Hareket azaltma tercihi: bütün süsleme hareketi durur (afiet-web ile aynı
+     kural). Sayfa hareketsiz de tam çalışır, hiçbir bilgi animasyonda saklı
+     değildir. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer components {
-  /* Afi maskotu (AfiRozet.vue): iki buhar teli şaşırtmalı süzülür. */
+  /* Buhar telleri (AfiRozet içindeki path'ler). `transform-box: fill-box`
+     şart: SVG'de dönüşüm varsayılan olarak viewBox uzayında hesaplanır ve
+     "alt orta" istediğimiz merkez kasenin altına düşer. Değerler
+     afiet-web/app/assets/css/main.css ile birebir aynıdır. */
   .steam {
     animation: var(--animate-steam);
-    transform-origin: bottom center;
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
   }
   .steam-b {
-    animation-delay: -1.5s;
+    animation-delay: -1.7s;
   }
 
-  /* Akan ölçü şeridi. Kenarlar zemine erisin diye maskelenir. */
+  /* Akan ölçü şeridi. Maske afiet.co'da YOKTUR, buraya özeldir: orada şerit
+     bütün ekranı kat ediyor, burada 34 rem'lik dar bir sütunda yaşıyor ve
+     kenarlarda sertçe kesilmesi ucuz duruyordu. */
   .marquee {
+    overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
   .marquee-track {
     animation: var(--animate-marquee);
-  }
-}
-
-/* Hareket azaltma tercihi: bütün süsleme hareketi durur. Sayfa hareketsiz de
-   tam çalışır, hiçbir bilgi animasyonda saklı değildir. */
-@media (prefers-reduced-motion: reduce) {
-  .steam,
-  .marquee-track,
-  .afi-float {
-    animation: none !important;
+    will-change: transform;
   }
 }

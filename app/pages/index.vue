@@ -61,7 +61,7 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
           <AfiRozet class="h-20 w-20 rounded-[26%]" />
         </a>
 
-        <h1 class="mt-5 text-4xl font-extrabold tracking-tight text-ink lowercase">afiet</h1>
+        <h1 class="mt-5 text-4xl font-extrabold tracking-tight text-brand lowercase">afiet</h1>
 
         <p class="mt-1.5 font-display text-lg font-semibold text-brand-deep italic">{{ TAGLINE }}</p>
 
@@ -90,10 +90,11 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
       <!-- ── son yazılar ─────────────────────────────────────────────────── -->
       <section v-if="yazilar.length" aria-labelledby="baslik-blog">
         <div class="mb-3 flex items-baseline justify-between gap-3">
-          <h2 id="baslik-blog" class="text-[11px] font-extrabold tracking-[0.14em] text-soft uppercase">
+          <h2 id="baslik-blog" class="flex items-center gap-3 text-sm font-extrabold tracking-wide text-brand">
+            <span class="h-px w-8 bg-brand/40" aria-hidden="true" />
             Son yazılar
           </h2>
-          <a :href="`${SITE}/blog`" class="text-[13px] font-extrabold text-brand-deep hover:underline">
+          <a :href="`${SITE}/blog`" class="shrink-0 text-sm font-bold text-ink transition hover:text-brand-deep">
             hepsi &rarr;
           </a>
         </div>
@@ -105,10 +106,11 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
       <!-- ── son sürüm ───────────────────────────────────────────────────── -->
       <section v-if="sonSurum" class="mt-8" aria-labelledby="baslik-surum">
         <div class="mb-3 flex items-baseline justify-between gap-3">
-          <h2 id="baslik-surum" class="text-[11px] font-extrabold tracking-[0.14em] text-soft uppercase">
+          <h2 id="baslik-surum" class="flex items-center gap-3 text-sm font-extrabold tracking-wide text-brand">
+            <span class="h-px w-8 bg-brand/40" aria-hidden="true" />
             Yenilikler
           </h2>
-          <a :href="`${SITE}/yenilikler`" class="text-[13px] font-extrabold text-brand-deep hover:underline">
+          <a :href="`${SITE}/yenilikler`" class="shrink-0 text-sm font-bold text-ink transition hover:text-brand-deep">
             tüm sürümler &rarr;
           </a>
         </div>
@@ -117,8 +119,13 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
 
       <!-- ── sosyal ──────────────────────────────────────────────────────── -->
       <section class="mt-9" aria-labelledby="baslik-sosyal">
-        <h2 id="baslik-sosyal" class="mb-3 text-center text-[11px] font-extrabold tracking-[0.14em] text-soft uppercase">
+        <h2
+          id="baslik-sosyal"
+          class="mb-4 flex items-center justify-center gap-3 text-sm font-extrabold tracking-wide text-brand"
+        >
+          <span class="h-px w-8 bg-brand/40" aria-hidden="true" />
           Sofrada bize katıl
+          <span class="h-px w-8 bg-brand/40" aria-hidden="true" />
         </h2>
         <SosyalSirasi />
       </section>

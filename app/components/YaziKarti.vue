@@ -21,10 +21,10 @@ defineProps<{ slug: string; title: string; tags: string[]; publishedAt: string; 
     class="group flex items-center gap-3.5 rounded-2xl border border-line bg-surface px-4 py-3.5 transition duration-300 hover:-translate-y-0.5 hover:border-brand/35 hover:shadow-lift"
   >
     <span class="min-w-0 flex-1">
-      <span class="line-clamp-2 block font-display text-[15px] leading-snug font-semibold text-ink group-hover:text-brand-deep">
+      <span class="line-clamp-2 block font-display text-lg leading-snug font-semibold tracking-tight text-ink transition group-hover:text-brand-deep">
         {{ title }}
       </span>
-      <span class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-bold text-soft">
+      <span class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-bold text-muted">
         <span v-if="tags[0]" class="rounded-full bg-brand-mint/40 px-2 py-0.5 text-brand-deep">{{ tags[0] }}</span>
         <span>{{ tarihTR(publishedAt) }}</span>
         <span aria-hidden="true">&middot;</span>
