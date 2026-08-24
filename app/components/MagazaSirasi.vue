@@ -22,7 +22,7 @@ const androidYayinda = MAGAZALAR.find((m) => m.key === 'play')?.yayinda ?? false
       :is="magaza.yayinda ? 'a' : 'div'"
       v-for="magaza in magazalar"
       :key="magaza.key"
-      v-bind="magaza.yayinda ? { href: magaza.href, target: '_blank', rel: 'noopener' } : {}"
+      v-bind="magaza.yayinda ? { href: magaza.href, target: '_blank', rel: 'noopener', 'data-tik': magaza.key } : {}"
       class="flex items-center gap-4 rounded-2xl px-5 py-4"
       :class="
         magaza.yayinda
@@ -90,6 +90,7 @@ const androidYayinda = MAGAZALAR.find((m) => m.key === 'play')?.yayinda ?? false
     <a
       v-if="!androidYayinda"
       :href="ANDROID_YOLU.href"
+      data-tik="android-beta"
       class="group flex items-center justify-center gap-1.5 rounded-2xl border border-brand/25 bg-brand-mint/25 px-5 py-3 text-sm font-extrabold text-brand-deep transition duration-300 hover:-translate-y-0.5 hover:border-brand/45 hover:shadow-lift"
     >
       {{ ANDROID_YOLU.metin }}

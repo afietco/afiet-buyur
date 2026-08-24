@@ -55,6 +55,7 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
       <header class="flex flex-col items-center text-center">
         <a
           :href="SITE"
+          data-tik="kunye"
           class="afi-float animate-afi-float rounded-[26%] shadow-float transition duration-300 hover:scale-[1.03]"
           aria-label="afiet.co"
         >
@@ -94,7 +95,7 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
             <span class="h-px w-8 bg-brand/40" aria-hidden="true" />
             Son yazılar
           </h2>
-          <a :href="`${SITE}/blog`" class="shrink-0 text-sm font-bold text-ink transition hover:text-brand-deep">
+          <a :href="`${SITE}/blog`" data-tik="blog-hepsi" class="shrink-0 text-sm font-bold text-ink transition hover:text-brand-deep">
             hepsi &rarr;
           </a>
         </div>
@@ -110,7 +111,7 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
             <span class="h-px w-8 bg-brand/40" aria-hidden="true" />
             Yenilikler
           </h2>
-          <a :href="`${SITE}/yenilikler`" class="shrink-0 text-sm font-bold text-ink transition hover:text-brand-deep">
+          <a :href="`${SITE}/yenilikler`" data-tik="surum-hepsi" class="shrink-0 text-sm font-bold text-ink transition hover:text-brand-deep">
             tüm sürümler &rarr;
           </a>
         </div>
@@ -134,11 +135,16 @@ const yayindaMagaza = MAGAZALAR.find((m) => m.yayinda) ?? null
       <footer class="mt-10 border-t border-line pt-6 text-center">
         <ul class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
           <li v-for="b in INCE_BAGLANTILAR" :key="b.href">
-            <a :href="b.href" class="text-[13px] font-bold text-soft transition hover:text-brand-deep">{{ b.ad }}</a>
+            <a
+              :href="b.href"
+              :data-tik="b.anahtar"
+              class="text-[13px] font-bold text-soft transition hover:text-brand-deep"
+              >{{ b.ad }}</a
+            >
           </li>
         </ul>
         <p class="mt-5 text-xs font-bold text-soft">
-          <a :href="SITE" class="hover:text-brand-deep">afiet.co</a>
+          <a :href="SITE" data-tik="kunye-alt" class="hover:text-brand-deep">afiet.co</a>
         </p>
       </footer>
     </main>

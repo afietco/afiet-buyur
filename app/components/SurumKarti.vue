@@ -11,6 +11,7 @@ defineProps<{ version: string; date: string; title: string; summary: string }>()
 <template>
   <a
     :href="`${SITE}/yenilikler/${version}`"
+    :data-tik="`surum:${version}`"
     class="group block rounded-2xl border border-line bg-surface p-4 transition duration-300 hover:-translate-y-0.5 hover:border-brand/35 hover:shadow-lift"
   >
     <span class="flex items-center gap-2">
