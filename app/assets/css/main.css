@@ -1,0 +1,125 @@
+/* buyur.afiet.co - afiet.co'nun "sıcak sofra" tasarım sisteminin taşınmış hâli.
+   Değerler afiet-web/app/assets/css/main.css ile BİREBİR aynıdır; iki site yan
+   yana açıldığında aynı sofradan çıkmış görünmek zorunda. Marka kuralları:
+   afiet-mobile/BRAND.md.
+
+   Buraya yalnız bu sayfanın kullandığı katman alındı (renk, tipografi, kağıt
+   dokusu, buhar/yüzme hareketi, akan ölçü şeridi). Kullanılmayan hiçbir token
+   kopyalanmadı: kopyalanan her ölü değer, iki repo arasında sessizce
+   birbirinden ayrılacak bir sapma noktasıdır. */
+
+@import 'tailwindcss';
+@import '@fontsource-variable/nunito';
+@import '@fontsource-variable/fraunces/full.css';
+
+@theme {
+  --font-sans: 'Nunito Variable', ui-rounded, system-ui, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+
+  /* Zemin ve mürekkep - keten örtü üzerinde sıcak taş tonları */
+  --color-canvas: #fdfaf3;
+  --color-surface: #ffffff;
+  --color-ink: #322f2a;
+  --color-soft: #605a4f;
+  --color-muted: #97907f;
+  --color-line: #ece4d4;
+
+  /* Marka yeşili ve türevleri (BRAND.md > Renk) */
+  --color-brand: #059669;
+  --color-brand-deep: #047857;
+  --color-brand-bright: #10b981;
+  --color-brand-mint: #a7f3d0;
+  --color-brand-ink: #022c22;
+
+  /* Besin grubu vurguları - uygulamadaki eşlemenin aynısı */
+  --color-sebze: #059669;
+  --color-meyve: #f43f5e;
+  --color-protein: #f97316;
+  --color-tahil: #f59e0b;
+  --color-sut: #0ea5e9;
+
+  --shadow-lift:
+    0 12px 32px -12px rgb(4 120 87 / 0.16),
+    0 2px 8px -2px rgb(50 47 42 / 0.08);
+  --shadow-float:
+    0 32px 72px -28px rgb(4 120 87 / 0.28),
+    0 8px 22px -10px rgb(50 47 42 / 0.12);
+
+  --animate-steam: steam 3.4s ease-in-out infinite;
+  --animate-afi-float: afi-float 3.2s ease-in-out infinite;
+  /* Akan ölçü şeridi: liste iki kez basılır, -%50 kayar */
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes afi-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* Afi'nin buhar telleri: yükselip incelerek soluklaşır, geri süzülür */
+  @keyframes steam {
+    0%, 100% { transform: translateY(0) scaleY(1); opacity: 1; }
+    50% { transform: translateY(-10px) scaleY(1.08); opacity: 0.45; }
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+  }
+
+  /* Kağıt dokusu: sayfanın üzerine sabit, %4'lük ince tahıl. Etkileşimi asla
+     yakalamaz; "sıcak sofra" temasının keten hissi. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* Display başlıkları satır dengesi: tek kelime sarkmasın */
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Afi maskotu (AfiRozet.vue): iki buhar teli şaşırtmalı süzülür. */
+  .steam {
+    animation: var(--animate-steam);
+    transform-origin: bottom center;
+  }
+  .steam-b {
+    animation-delay: -1.5s;
+  }
+
+  /* Akan ölçü şeridi. Kenarlar zemine erisin diye maskelenir. */
+  .marquee {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .marquee-track {
+    animation: var(--animate-marquee);
+  }
+}
+
+/* Hareket azaltma tercihi: bütün süsleme hareketi durur. Sayfa hareketsiz de
+   tam çalışır, hiçbir bilgi animasyonda saklı değildir. */
+@media (prefers-reduced-motion: reduce) {
+  .steam,
+  .marquee-track,
+  .afi-float {
+    animation: none !important;
+  }
+}
